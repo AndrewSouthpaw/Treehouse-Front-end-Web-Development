@@ -344,9 +344,61 @@ nav a {
 
 
 
+.profile-photo {
+	display: block;		// gives more flexibility for desktop version
+	max-width: 150px;
+	margin: 0 auto 30px; 
+	border-radius: 100%;  // corners are rounded. 100% = circle
+}
 
 
 
+
+Contact Links
+=======================================
+
+Special a hrefs:
+	tel:
+	mailto:
+	http://twitter.com/intent/tweet?screen_name=andrewsouthpaw
+	
+
+
+Icons
+=======================================
+
+
+
+/******************
+PAGE: CONTACT
+******************/
+
+.contact-info {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0.9em;
+}
+
+.contact-info a {
+	display: block;		// each anchor takes up space
+	min-height: 20px;	// min height of icons to be visible
+	background-repeat: no-repeat;	// prevents default repeating
+	background-size: 20px 20px;		// resizes background
+	padding: 0 0 0 30px;	// lots of extra space on left side for img
+}
+
+.contact-info li.phone a {
+	background-image: url('../img/phone.png');
+}
+
+.contact-info li.mail a {
+	background-image: url('../img/mail.png');
+}
+
+.contact-info li.twitter a {
+	background-image: url('../img/twitter.png');
+}
 
 
 
