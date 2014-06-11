@@ -386,6 +386,7 @@ PAGE: CONTACT
 	background-repeat: no-repeat;	// prevents default repeating
 	background-size: 20px 20px;		// resizes background
 	padding: 0 0 0 30px;	// lots of extra space on left side for img
+	margin: 0 0 10px;
 }
 
 .contact-info li.phone a {
@@ -407,6 +408,178 @@ PAGE: CONTACT
 
 
 
+
+/////////////////////////////////////////////////////////////////////
+1.8 - Responsive Web Design & Testing
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+3 components:
+	- fluid images
+	- fluid grid
+	- media query
+
+
+
+Breakpoints
+	- screen widths where layout "breaks" and changes to accommodate screen
+
+
+@media screen and (min-width: 480px) { /* if screen > 480px. Common for smart
+											phones in landscape */
+	body {
+		background: navy;
+	}
+}
+
+@media screen and (min-width: 660px) { /* tablets and regular desktops */
+	body {
+		background: darkgreen;
+	}
+}
+
+
+#gallery li {
+	width: 28.3333%;
+}
+
+#gallery li:nth-child(4n) {		// allows us to select n childs
+	clear: left;
+}
+
+
+Allows us to control size of browser window on mobiles:
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+
+Testing
+=======================================
+Taking screencaps and import into photo-editing tool
+B&W test: make sure people can see details with color-blindness, low contrast
+Flip upside-down: check visual composition. Don't feel "heavy"
+Blur: color saturation, arrangement of colors
+Slight blur: legibility of text. Adjust for partial-vision impairments
+
+
+HTML Validator: http://validator.w3.org/
+CSS Validator: jigsaw.w3.org/css-validator
+
+Screenshot service: browserstack.com
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+1.9 - Hosting
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Domain
+=======================================
+www. -- subdomain
+.com -- TLD, Top Level Domain
+
+Domain registrars: GoDaddy, NameCheap
+
+Generally domain name represents IP address
+DNS - Domain Name System - routing system for IP addresses
+
+Hosting
+=======================================
+Hosting: MediaTemple, DreamHost, WebhostingForStudents
+
+Nameserver 1: ns1
+Nameserver 2: ns2
+Put these into our domain registrar. "Transfer DNS to Webhost" or Nameservers
+
+
+
+SFTP
+=======================================
+Secure File Transfer Protocol
+
+FTP software: Cyberduck
+Open Connection
+	choose SFTP (SSH FTP)
+	server: (use FTP address)
+	port: 18765
+	user: your username
+	pass: your pass
+	
+	allow "unknown host key" always
+
+Go to www folder
+Delete cgi-bin
+Drag files into Cyberduck
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+1.10 - Debugging Problems
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+Developer Tools
+=======================================
+Chrome is a preferred browser for robust tools
+Chrome DevTools: CMD + Option + I
+or right click element, "Inspect Element"
+or Menu->Tools->Developer Tools
+
+
+Spyglass
+	- Inspect elements directly
+Elements
+	- DOM tree
+		can hover over sections and it gets highlighted
+	- right panel shows applied CSS, and file location
+	- browser sometimes provides default styling as well
+	- you can change code here for quick experimentation, lost after refresh
+	- crossed-out lines are overridden
+	- can deactivate styling
+	- metrics (at bottom): size, padding, border, and margin of element,
+		shows how it is applied in the element
+Network
+	- how long each element takes to load
+
+
+
+
+Fixing problems in code
+=======================================
+
+W3C Visual Formatting Model: http://www.w3.org/TR/CSS21/visuren.html
+
+Some typos can be adjusted by browser, e.g. "image" instead of "img"
+Can test bad selection by setting background to bright color
+
+
+
+
+Resources
+=======================================
+
+W3C
+CSS-Tricks: http://css-tricks.com/
+Twitter industry leaders: https://twitter.com/nickrp/lists/web-community 
+Sharing small projects: http://codepen.io/
+Dribble, shots of your design: http://dribbble.com/
 
 
 
