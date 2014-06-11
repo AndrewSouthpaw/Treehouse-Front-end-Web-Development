@@ -1,0 +1,267 @@
+
+
+
+=====================================================================
+2a - HTML
+=====================================================================
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.2 - Text
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+div - divider, block-level element
+span - used to divide up text, rather than large sections. In-line element
+h1 - first level headline
+p - paragraph
+em - emphasize. Not necessarily to italicize, just emphasize. Though italics
+	 are the default.
+strong - stronger emphasis.
+hr - void element. Used for text breakup.
+blockquote - used with <p>. 
+<blockquote cite="URL"> -- could display citation using CSS
+q - quote tag.
+	<p>A man once said, <q cite="">I think therefore I am.</q>
+<code> - let's browser know it is computer code.
+<pre></pre> - maintains formatting in your HTML source. Also, slightly indented.
+Use them together!
+	<pre><code>
+		if (!foo) {
+			bar = 3;
+		}
+	</code></pre>
+
+<br> - line break. self-closing.
+<abbr title="expansion"></abbr> - Abbreviation. Creates title tag.
+<address></address> - Physical mailing address. It's contact information for that
+	element, e.g. <body>, or <li>
+<cite></cite> - for book names, etc.
+<wbr> - linebreak opportunity
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.3 - Lists
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+<ol> - ordered list
+<ul> - unordered list
+<dl> - definition list
+	<dt></dt> - definition title
+	<dd></dd> - description / definition
+
+			<dt lang-"en-US">color</dt>
+			<dt lang-"en-GB">colour</dt>
+			<dd>A sensation of receiving light.</dd>
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.4 - Links
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+Anchors within page:
+	<a href="#some_text" id="my_link">My link</a>
+	
+	<p id="some_text">
+	<a href="#my_link">Go back</a>
+
+
+
+Relative links: "another_page.html"
+Absolute: "http://..."
+Go up a folder: ../
+URI - uniform resource identifier. URL is type of URI
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.5 - Objects
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+<img src="" alt="" title="">  title does the hover text
+
+Embed code
+=======================================
+<object width="" height="">		// failed attempt to standardize.
+	<param name="" value=""></param> -- for IE
+	<embed src=""> -- nothing to do with params, for cross-browser support
+</object>
+
+But better to use HTML5 stuff.
+
+
+
+
+Includes and iframes
+=======================================
+All of these are "includes"
+
+<link rel="stylesheet" type="text/css" href="main.css"> - goes inside <head>
+<script type="text/javascript" src="scripts/app.js"></script>
+	- can put script in between tags, but better as separate file.
+
+<iframe width="300" height="300" src="another_page.html"></iframe>
+	Creates a cut-out window to look at another page.
+
+Comments: <!-- comments go here -->
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.6 - Tables
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Fruits</th>
+			<th valign="top">Vegetables</th>	<!-- creates second column -->
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="2" align="center">Thanks for reading.</td>
+				<!-- spans across n columns -->
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<td>Oranges</td>
+			<td>Carrots</td>
+		</tr>
+		<tr>
+			<td></td>	<!-- empty cell -->
+			<td>Broccoli</td>
+		</tr>
+	</tbody>
+</table>
+
+
+valign - vertical alignment
+align - horizontal alignment
+colspan - span across mulptiple columns
+cellpadding - padding within each cell
+cellspacing - thickness of border (spacing) between cells
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2.7 - Forms
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+<form action="#" method="(POST/GET)" name="my_form">
+	<fieldset>
+		<legend>Important Information</legend>
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username"><br>
+		<input type="password" name="password"><br>
+		<!-- radio button group -->
+		<input type="radio" name="gender" value="Male">Male<br>
+		<input type="radio" name="gender" value="Female">Female<br>
+		<input type="checkbox" name="foods" value="Grapes">Grapes<br>
+		<input type="checkbox" name="foods" value="Apples">Apples<br>
+		<input type="checkbox" name="foods" value="Bananas">Bananas<br>
+	</fieldset>
+	
+	<fieldset>
+		<legend align="center">Optional Items</legend>
+		<label for="essay">Tell us more about<br>yourself.<br></label>
+		<textarea name="essay" rows="10" cols="30" id="essay"></text><br>
+		
+		<!-- drop box -->
+		<select>
+			<optgroup label="Americas">
+				<option>North America</option>
+				<option>South America</option>
+			</optgroup>
+			<optgroup label="Eurasia">
+				<option>Europe</option>
+				<option>Asia</option>
+			</optgroup>
+		</select><br>
+	<fieldset>
+	
+	<input type="submit" value="#text goes here">
+</form>
+
+Browsers will even recognize that you're submitting a password
+Hard to style, probably best to go with default forms.
+Labels allow you to click on the label and have it associate with the field,
+e.g. a checkbox.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
