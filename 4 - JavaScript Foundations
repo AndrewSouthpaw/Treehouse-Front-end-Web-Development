@@ -1,0 +1,444 @@
+
+
+
+
+=====================================================================
+4 - JavaScript Basics
+=====================================================================
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+1 - Variables
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+/* starts with A-Z a-z _ $
+   continue with A-Z a-z 0-9 _ $
+*/
+
+/* reserved words:
+	developer.mozilla.org/en/JavaScript/Reference/Reserved_Words
+class
+export
+extends
+super
+let package
+yield protected 
+private static public
+
+
+Unassigned variables are given "undefined" by default.
+"Null" used to be truly empty. Not given by default.
+"undefined" and null are falsey values
+~~~
+		var myVar;
+		console.log(typeof myVar);	// > undefined
+		console.log(typeof myVar === "undefined");	// > true
+		console.log(myVar === undefined);	// > true
+		// undefined is a variable set by JS, but it's possible to overwrite
+		var x = null;
+		if(x == null) ...	// > true
+		if(myVar == null) ...	// > true. == is flexible, "close enough"
+		if(myVar === null) ...	// > false.
+		
+~~~
+
+Shadowing: using same name for var in a nested scope. Temporarily overwrites.
+Creating variable without var keyword inside function automatically creates
+global variable... bad times.
+JS vars have "functional scope"
+
+		var myColor = "blue";
+		console.log("before myFunc()", mycolor);
+		function myFunc() {
+			var myColor = "yellow";		// "var" allows for shadowing here
+			myNumber = 42; 	// creates global variable inside a function... bad.
+			console.log("inside myFunc()", mycolor);	// > yellow
+		}
+		myFunc();
+		console.log("after myFunc()", mycolor);	// > blue
+
+
+
+
+Hoisting
+vars inside if statements are not in separate scope! That's for languages with
+"block scope". JS is "functional scope."
+vars declared inside an if statement are "hoisted" to the top automatically.
+Thus best practice to define vars at top of function
+
+var color = "blue", number, name = "Jim"; // multiple on same line.
+var color = "blue",
+	number,
+	name = "Jim";
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+2 - Strings
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Single and double quotes are mostly the same...
+except single can't handle apostrophe.
+and double can't handle quotes
+
+Embedding special chars: \  (escape char)   
+	'He said "This is Jim\'s string"'
+
+Newline: \n
+Tab: \t
+Concatenation: if adding new lines, make sure + at end of line
+
+
+Methods:
+	length()
+	indexOf("substr")	// returns -1 if not found
+	charAt(index)
+	substr(start, length)
+	toLowerCase()
+	toUpperCase()
+
+
+Comparing
+	"hello" == "Hello"  // > true
+	"hello" === "Hello" // > false
+	Uppercase less than lowercase in value
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+3 - Numbers
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+Only one type of number in JS. 11 === 11.0. You will get the floating point type
+numbers.
+
+	var e = 0.1
+	var f = 0.2
+	result = e * f 	// > 0.02000000000004
+
+So things like $11.50 can be affected by rounding errors.
+
+Scientific:  xEy	e.g. 1.23E6
+Octal: 0xx.  E.g. 012 // > 10
+				  019 // > interpreted as decimal literal, because invalid octal
+Hex: 0x___. E.g. 0xff // > 255
+
+
+parseInt(string_of_ints)
+	e.g. parseInt("019") // > 1. Error issue
+		 parseInt("019", 10); // > 19. Radex sets base
+Just always set the base, because you don't know if it might lead with 0.
+		 parseInt("010111", 2)
+		 parseInt("23 people", 10)	// > 23
+		 parseInt("there are 23 people", 10)	// > NaN
+
+NaN is not equal to itself.
+	NaN !== NaN		// > true
+	isNaN(var)
+
+parseFloat(double)
+
+
+var r = 15 / 10;	// > 1.5
+Modulo %
+Precedence table:
+	developer.mozilla.org/en/JavaScript/Reference/Operators/Operator_Precedence
+
+
+Comparisons
+	1 === "1"	> false
+	1 == "1"	> true
+	1 === parseInt("1",10) 	> true
+
+
+Math object
+	Math.(method)
+		random() - b/n [0,1]
+		round()
+		floor()
+		ceil()
+		pow(x, y)	// x^y
+		sqrt()
+
+Check objects of Math object, type it in console
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+4 - Arrays
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+Arrays
+	var x = []		// the empty array
+	Non-homogenous.
+	var a = new Array();	// the constructor, but literals are used.
+	Can do stuff like...
+		var a = new Array(50);
+		a.length	// > 50
+	Can even pass functions: function (a) {return 2 * a;}
+
+Getters: my_array[index]
+	Reaching elements outside index returns undefined
+
+Setter: my_array[index] = ...
+	If you set beyond last index, it fills intermediate values with undefined
+
+toString()
+push()
+	// something funny about console.log: it will show array values as it
+	   finishes in the running. So use .toString() to force it's reveal
+pop() - returns value and removes
+unshift - adds value to beginning
+shift - pops from the beginning
+sort(compareFunction)	- default is sorting lexicographically as Strings
+						  provide compare to show different method
+	
+	my_array.sort(function (a,b) {
+		return a - b;
+	});
+
+	// Randomly sorted
+	my_array.sort(function(a,b) {return Math.random() - 0.5;});
+
+reverse()
+delete my_array[2] // creates undefined at index 2
+splice(index, num_past_to_remove);
+	e.g. splice(2,1) cuts out element at index 2
+	or...
+		 splice(2, 0, 'two', '...') - inserts element(s)
+		 splice(2, 1, 'two') - equivalent to my_array[2] = 'two'
+
+x.concat(y) -- also pulls out nested arrays as well
+slice(begin_index, end_index) -- if end_index outside range, no extra vals
+join(combining_char) -- calls each on .toString()
+split(splitting_char)
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+5 - Functions
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+If method called without some arguments, it fills those with undefined.
+Be careful about that.
+
+Anonymouse functions
+=======================================
+
+	var myFunction = function (args) { code; } // creates anonymous 
+												  function object
+	var callTwice = function (targetFunction) {
+		targetFunction(); targetFunction();
+	}
+	callTwice(myFunction);
+	callTwice(function [namedFunction] () {
+		console.log("Hello from anon function");
+	});
+
+	function tempFunction() {		// way to scope the variables
+		var a, b, c;
+	}
+	tempFunction();
+	
+	// instead... sneakier way to create private scope
+	(function (arg1, arg2) {
+		var a, b, c;
+		// ...
+	})(arg1, arg2)
+	
+	
+Examples
+=======================================
+
+In HTML...
+		<button id="action">Action</button>
+		<input id="text_field">
+
+In JS...
+		var button = document.getElementByID("action");
+		var input = document.getElementByID("input");
+		/* This is not the best way to do it, can only have one assignment... */
+		button.onclick = function () {
+			console.log("clicked");
+		}
+		/* Here's a better way */
+		button.addEventListener('click', function () {
+			console.log("clicked");
+		});
+		button.addEventListener('click', function () {
+			console.log("other click listener");
+			input.setAttribute('value', 'Hello World');
+		});
+		
+	
+	
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+6 - Objects
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Empty object: {}
+
+Objects have key/value pairs {"key": value};
+Can use keys without quotation marks if it's simple.
+	var jim = {
+		name = "Jim",
+		skills: ...
+		"favorite color": "green"
+	};
+	jim["favorite color"]
+
+
+Can give objects functions
+	greet: function (person) {
+		console.log("Hello there",person.name);
+		console.log("I'm",this.name);
+	}
+	var jimGreet = jim.greet;
+	jimGreet();		// > "Hello... I'm <blank>" Lost context of object
+					// Calls from global namespace (window). Even window has
+					// a name attribute.
+
+Methods generally considered to be functions associated with an object
+This should be used as a method.
+
+
+
+Call, Apply
+=======================================
+Interesting: assignment of 'window.name = "The Window"' persists as long as
+Chrome window stays around. Refresh doesn't change it.
+
+<object>.call(<this_obj>) - calls itself with the value of this_obj
+
+	jimGreet.call({name: "Amit"})
+	jim.greet.call(nick)
+
+
+<method>.apply(<this_obj>)
+
+	var jim = {
+		name = "Jim",
+		greet: function (name, mood) {
+			name = name || "You";	// way to set defaults for params
+			mood = mood || "good";
+			console.log("Hello, " + name + "I am " + this.name +
+						" and I am in a " + mood + " mood!");
+		}
+	};
+	var jimGreet = jim.greet;
+	var nick = { name: "Nick", greet: jim.greet};
+	jim.greet.apply(nick);
+	
+
+
+with call, pass args after this_obj arg.
+	jimGreet.call({name: "Amit"}, "Matt", "bad");
+	
+with apply, we pass this_obj and then args as an array
+	jimGreet.apply(nick, ["Matt", "bad"]);
+Apply allows us to dynamically call functions with variable number of args.
+	var args = ["Michael", "happy"];
+	jim.greet.apply(nick, args);
+
+
+
+
+
+
+Prototypes
+=======================================
+
+Prototypes are sort of like classes, but in OOP they don't have classes. (??)
+JS's "object-oriented" inheritance system works, over "classic" inheritance
+~~~~
+var personPrototype = {
+	name: "Anonymous",
+	greet: function (name, mood) {
+		name = name || "You";	// way to set defaults for params
+		mood = mood || "good";
+		console.log("Hello, " + name + "I am " + this.name +
+					" and I am in a " + mood + " mood!");
+	},
+	species, "Homo Sapien"
+};
+
+// var jim = new personPrototype	this is how we might think about it...
+// jim.name = "Jim";
+
+// Prototypal inheritance: inherit keys from prototype
+// Need constructor function to build a new object
+function Person (name) {
+	this.name = name;
+	return this;	// done by default anyway, optional.
+}
+
+Person.prototype = personPrototype	// prototype is an object
+
+jim = new Person("Jim")		// new operator changes "this" to be a new object
+							// instead of window. And creates new object based
+							// on prototype of the object Person, and returns
+							// object by default
+
+// added values are stored "above" the prototype pointer
+// can also change prototype values
+Person.prototype.species = "Human"
+Person.prototype.favoriteColor = "red";
+~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
